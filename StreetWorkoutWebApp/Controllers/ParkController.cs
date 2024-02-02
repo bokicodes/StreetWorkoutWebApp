@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StreetWorkoutWebApp.Data;
 using StreetWorkoutWebApp.Models;
 
@@ -21,7 +22,7 @@ namespace StreetWorkoutWebApp.Controllers
 
         public IActionResult Details(int id)
         {
-            Park park = _context.Parks.FirstOrDefault(p => p.Id == id);
+            Park park = _context.Parks.Include(a => a.Address).FirstOrDefault(p => p.Id == id);
             return View(park);
         }
     }
