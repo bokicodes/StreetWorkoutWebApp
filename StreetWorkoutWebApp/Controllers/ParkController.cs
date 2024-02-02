@@ -18,5 +18,11 @@ namespace StreetWorkoutWebApp.Controllers
             List<Park> parks = _context.Parks.ToList();
             return View(parks);
         }
+
+        public IActionResult Details(int id)
+        {
+            Park park = _context.Parks.FirstOrDefault(p => p.Id == id);
+            return View(park);
+        }
     }
 }
