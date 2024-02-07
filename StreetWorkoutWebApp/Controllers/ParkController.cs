@@ -31,5 +31,16 @@ namespace StreetWorkoutWebApp.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Create(Park park)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(park);
+            }
+            _parkRepository.Add(park);
+            return RedirectToAction("Index");
+        }
     }
 }
