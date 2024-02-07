@@ -26,5 +26,10 @@ namespace StreetWorkoutWebApp.Controllers
             Park park = await _parkRepository.GetByIdAsync(id);
             return View(park);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
