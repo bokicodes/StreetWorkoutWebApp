@@ -1,28 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StreetWorkoutWebApp.Data;
+using StreetWorkoutWebApp.Interfaces;
 using StreetWorkoutWebApp.Models;
 
 namespace StreetWorkoutWebApp.Controllers
 {
     public class ParkController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IParkRepository _parkRepository;
 
-        public ParkController(ApplicationDbContext context)
+        public ParkController(IParkRepository parkRepository)
         {
-            _context = context;
+            _parkRepository = parkRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Park> parks = _context.Parks.ToList();
+            IEnumerable<Park> parks = await _parkRepository.GetAll(); 
             return View(parks);
         }
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            Park park = _context.Parks.Include(a => a.Address).FirstOrDefault(p => p.Id == id);
+            Park park = await _parkRepository.GetByIdAsync(id);
             return View(park);
         }
     }
