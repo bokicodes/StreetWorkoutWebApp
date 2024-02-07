@@ -32,7 +32,7 @@ namespace StreetWorkoutWebApp.Repository
 
         public async Task<Park> GetByIdAsync(int id)
         {
-            return await _context.Parks.FirstOrDefaultAsync(p => p.Id == id);
+            return await _context.Parks.Include(a => a.Address).FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<IEnumerable<Park>> GetParksByCity(string city)
