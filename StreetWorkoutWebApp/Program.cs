@@ -3,12 +3,14 @@ using StreetWorkoutWebApp.Data;
 using StreetWorkoutWebApp.Helpers;
 using StreetWorkoutWebApp.Interfaces;
 using StreetWorkoutWebApp.Repository;
+using StreetWorkoutWebApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IParkRepository, ParkRepository>();
+builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {

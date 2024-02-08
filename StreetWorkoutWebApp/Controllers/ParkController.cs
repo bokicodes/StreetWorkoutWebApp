@@ -3,16 +3,19 @@ using Microsoft.EntityFrameworkCore;
 using StreetWorkoutWebApp.Data;
 using StreetWorkoutWebApp.Interfaces;
 using StreetWorkoutWebApp.Models;
+using StreetWorkoutWebApp.ViewModels;
 
 namespace StreetWorkoutWebApp.Controllers
 {
     public class ParkController : Controller
     {
         private readonly IParkRepository _parkRepository;
+        private readonly IPhotoService _photoService;
 
-        public ParkController(IParkRepository parkRepository)
+        public ParkController(IParkRepository parkRepository, IPhotoService photoService)
         {
             _parkRepository = parkRepository;
+            _photoService = photoService;
         }
 
         public async Task<IActionResult> Index()
@@ -33,14 +36,32 @@ namespace StreetWorkoutWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Park park)
+        public async Task<IActionResult> Create(CreateParkVM parkVM)
         {
-            if(!ModelState.IsValid)
+            if(ModelState.IsValid)
             {
-                return View(park);
+                var result = await _photoService.AddPhotoAsync(parkVM.Image);
+
+                var park = new Park
+                {
+                    Title = parkVM.Title,
+                    Description = parkVM.Description,
+                    Image = result.Url.ToString(),
+                    Address = new Address
+                    {
+                        Street = parkVM.Address.Street,
+                        City = parkVM.Address.City,
+                        Country = parkVM.Address.City
+                    }
+                };
+                _parkRepository.Add(park);
+                return RedirectToAction("Index");
             }
-            _parkRepository.Add(park);
-            return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError("", "Photo upload failed");
+            }
+            return View(parkVM);
         }
     }
 }
