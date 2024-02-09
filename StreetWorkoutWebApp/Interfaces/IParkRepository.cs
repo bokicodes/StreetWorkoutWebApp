@@ -6,6 +6,7 @@ namespace StreetWorkoutWebApp.Interfaces
     {
         Task<IEnumerable<Park>> GetAll();
         Task<Park> GetByIdAsync(int id);
+        Task<Park> GetByIdAsyncNoTracking(int id);
         Task<IEnumerable<Park>> GetParksByCity(string city);
         bool Add(Park park);
         bool Update(Park park);

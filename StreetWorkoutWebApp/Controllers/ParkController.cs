@@ -63,5 +63,70 @@ namespace StreetWorkoutWebApp.Controllers
             }
             return View(parkVM);
         }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var park = await _parkRepository.GetByIdAsync(id);
+
+            if(park == null)
+            {
+                return View("Error");
+            }
+
+            var parkVM = new EditParkVM
+            {
+                Title = park.Title,
+                Description = park.Description,
+                AddressId = park.AddressId,
+                Address = park.Address,
+                Url = park.Image
+            };
+            return View(parkVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditParkVM parkVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Failed to edit park");
+                return View("Edit", parkVM);
+            }
+
+            var park = await _parkRepository.GetByIdAsyncNoTracking(id);
+
+            if (park != null)
+            {
+                try
+                {
+                    await _photoService.DeletePhotoAsync(park.Image);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError("", "Could not delete photo");
+                    return View("Edit", parkVM);
+                }
+
+                var photoResult = await _photoService.AddPhotoAsync(parkVM.Image);
+
+                var newPark = new Park
+                {
+                    Id = id,
+                    Title = parkVM.Title,
+                    Description = parkVM.Description,
+                    Image = photoResult.Url.ToString(),
+                    AddressId = parkVM.AddressId,
+                    Address = parkVM.Address
+                };
+
+                _parkRepository.Update(newPark);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Edit", parkVM);
+            }
+        }
     }
 }

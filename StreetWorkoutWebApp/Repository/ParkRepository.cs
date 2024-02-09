@@ -35,6 +35,11 @@ namespace StreetWorkoutWebApp.Repository
             return await _context.Parks.Include(a => a.Address).FirstOrDefaultAsync(p => p.Id == id);
         }
 
+        public async Task<Park> GetByIdAsyncNoTracking(int id)
+        {
+            return await _context.Parks.Include(a => a.Address).AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+        }
+
         public async Task<IEnumerable<Park>> GetParksByCity(string city)
         {
             return await _context.Parks.Where(p => p.Address.City.Contains(city)).ToListAsync();
