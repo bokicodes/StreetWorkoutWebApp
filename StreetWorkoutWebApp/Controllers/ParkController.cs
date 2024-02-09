@@ -128,5 +128,28 @@ namespace StreetWorkoutWebApp.Controllers
                 return View("Edit", parkVM);
             }
         }
+
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var park = await _parkRepository.GetByIdAsync(id);
+
+            if (park == null)
+                return View("Error");
+
+            return View(park);
+        }
+
+        [HttpPost,ActionName("Delete")]
+        public async Task<IActionResult> DeletePark(int id)
+        {
+            var park = await _parkRepository.GetByIdAsync(id);
+
+            if (park == null)
+                return View("Error");
+
+            _parkRepository.Delete(park);
+            return RedirectToAction("Index");
+        }
     }
 }
