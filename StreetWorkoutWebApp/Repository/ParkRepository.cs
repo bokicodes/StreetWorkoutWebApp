@@ -22,6 +22,7 @@ namespace StreetWorkoutWebApp.Repository
         public bool Delete(Park park)
         {
             _context.Remove(park);
+            _context.Remove(park.Address);
             return Save();
         }
 

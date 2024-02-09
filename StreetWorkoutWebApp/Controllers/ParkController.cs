@@ -148,6 +148,15 @@ namespace StreetWorkoutWebApp.Controllers
             if (park == null)
                 return View("Error");
 
+            try
+                {
+                    await _photoService.DeletePhotoAsync(park.Image);
+                }
+            catch (Exception)
+                {
+                    ModelState.AddModelError("", "Could not delete photo");
+                }
+
             _parkRepository.Delete(park);
             return RedirectToAction("Index");
         }
