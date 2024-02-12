@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StreetWorkoutWebApp.Data;
 using StreetWorkoutWebApp.Models;
+using StreetWorkoutWebApp.ViewModels;
 
 namespace StreetWorkoutWebApp.Controllers
 {
@@ -24,7 +25,7 @@ namespace StreetWorkoutWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginVM loginVM)
+        public async IActionResult Login(LoginVM loginVM)
         {
 
         }
