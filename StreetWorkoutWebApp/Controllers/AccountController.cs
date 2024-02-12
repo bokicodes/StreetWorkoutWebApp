@@ -61,7 +61,7 @@ namespace StreetWorkoutWebApp.Controllers
                 TempData["Error"] = "Wrong credentials. Please, try again.";
                 return View(loginVM);
             }
-        }
 
+        }
     }
 }

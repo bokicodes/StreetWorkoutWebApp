@@ -6,6 +6,7 @@ namespace StreetWorkoutWebApp.ViewModels
     public class LoginVM
     {
         [Required(ErrorMessage = "Email Address is required")]
+        [EmailAddress]
         [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
         [Required]
