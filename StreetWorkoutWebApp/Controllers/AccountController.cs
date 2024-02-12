@@ -30,7 +30,7 @@ namespace StreetWorkoutWebApp.Controllers
             if (!ModelState.IsValid)
                 return View(loginVM);
 
-            AppUser user = await _userManager.FindByEmailAsync(loginVM.Email);
+            AppUser user = await _userManager.FindByEmailAsync(loginVM.EmailAddress);
 
             if(user != null)
             {
