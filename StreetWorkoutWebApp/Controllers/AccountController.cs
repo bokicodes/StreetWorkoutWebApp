@@ -104,7 +104,7 @@ namespace StreetWorkoutWebApp.Controllers
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
             }
 
-            return View("RegisterCompleted");
+            return RedirectToAction("Index", "Park");
         }
     }
 }
