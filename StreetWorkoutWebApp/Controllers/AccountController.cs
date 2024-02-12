@@ -63,5 +63,11 @@ namespace StreetWorkoutWebApp.Controllers
             }
 
         }
+
+
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }
