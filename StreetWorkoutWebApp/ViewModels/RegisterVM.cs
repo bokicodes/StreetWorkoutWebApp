@@ -10,6 +10,7 @@ namespace StreetWorkoutWebApp.ViewModels
         public string EmailAddress { get; set; }
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
+        [StringLength(20, MinimumLength = 3)]
         public string Password { get; set; }
         [Required(ErrorMessage = "Confirm password is required")]
         [Compare("Password",ErrorMessage = "Passwords do not match!")]
