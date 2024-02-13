@@ -42,7 +42,7 @@ namespace StreetWorkoutWebApp.Controllers
 
                     if(result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Park");
+                        return RedirectToAction("Index", "Dashboard");
                     }
                     else
                     {
