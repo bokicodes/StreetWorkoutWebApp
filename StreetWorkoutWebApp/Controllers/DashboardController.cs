@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StreetWorkoutWebApp.Interfaces;
+using StreetWorkoutWebApp.ViewModels;
 
 namespace StreetWorkoutWebApp.Controllers
 {
@@ -13,9 +14,16 @@ namespace StreetWorkoutWebApp.Controllers
         }
 
 
-        public IActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var userParks = await _dashboardRepository.GetUsersParks();
+
+            DashboardVM dashboardVM = new DashboardVM()
+            {
+                Parks = userParks
+            };
+
+            return View(dashboardVM);
         }
     }
 }
