@@ -11,11 +11,13 @@ namespace StreetWorkoutWebApp.Controllers
     {
         private readonly IParkRepository _parkRepository;
         private readonly IPhotoService _photoService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ParkController(IParkRepository parkRepository, IPhotoService photoService)
+        public ParkController(IParkRepository parkRepository, IPhotoService photoService, IHttpContextAccessor httpContextAccessor)
         {
             _parkRepository = parkRepository;
             _photoService = photoService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<IActionResult> Index()
@@ -32,7 +34,12 @@ namespace StreetWorkoutWebApp.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var currUserId = _httpContextAccessor.HttpContext?.User.GetUserId();
+            var createParkVM = new CreateParkVM
+            {
+                AppUserId = currUserId,
+            };
+            return View(createParkVM);
         }
 
         [HttpPost]
@@ -47,6 +54,7 @@ namespace StreetWorkoutWebApp.Controllers
                     Title = parkVM.Title,
                     Description = parkVM.Description,
                     Image = result.Url.ToString(),
+                    AppUserId = parkVM.AppUserId,
                     Address = new Address
                     {
                         Street = parkVM.Address.Street,
