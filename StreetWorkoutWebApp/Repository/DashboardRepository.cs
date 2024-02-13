@@ -17,9 +17,9 @@ namespace StreetWorkoutWebApp.Repository
 
         public async Task<List<Park>> GetUsersParks()
         {
-            var currentUser = _httpContext.HttpContext?.User;
+            var currentUser = _httpContext.HttpContext?.User.GetUserId();
 
-            var userParks = _context.Parks.Where(p => p.AppUser.Id == currentUser.ToString());
+            var userParks = _context.Parks.Where(p => p.AppUser.Id == currentUser);
 
             return userParks.ToList();
         }
