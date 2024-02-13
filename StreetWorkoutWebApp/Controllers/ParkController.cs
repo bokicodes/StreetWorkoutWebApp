@@ -81,13 +81,16 @@ namespace StreetWorkoutWebApp.Controllers
                 return View("Error");
             }
 
+            var currUserId = _httpContextAccessor.HttpContext?.User.GetUserId();
+
             var parkVM = new EditParkVM
             {
                 Title = park.Title,
                 Description = park.Description,
                 AddressId = park.AddressId,
                 Address = park.Address,
-                Url = park.Image
+                Url = park.Image,
+                AppUserId = currUserId
             };
             return View(parkVM);
         }
@@ -124,7 +127,8 @@ namespace StreetWorkoutWebApp.Controllers
                     Description = parkVM.Description,
                     Image = photoResult.Url.ToString(),
                     AddressId = parkVM.AddressId,
-                    Address = parkVM.Address
+                    Address = parkVM.Address,
+                    AppUserId = parkVM.AppUserId
                 };
 
                 _parkRepository.Update(newPark);

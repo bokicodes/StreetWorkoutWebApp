@@ -11,5 +11,6 @@ namespace StreetWorkoutWebApp.ViewModels
         public Address Address { get; set; }
         public IFormFile Image { get; set; }
         public string? Url { get; set; }
+        public string AppUserId { get; set; }
     }
 }
