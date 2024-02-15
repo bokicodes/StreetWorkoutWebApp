@@ -1,41 +1,29 @@
 ﻿@using StreetWorkoutWebApp.ViewModels
 @model List<UserVM>
 
-<section class="flush-with-above">
+<div class="album py-5 bg-light">
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <table class="table table-hover align-items-center table-borderless">
-                    <tbody>
-                        @foreach (var user in Model)
-                        {
-                            <tr class="bg-white">
-                                <th scope="row">
-                                    <div class="media align-items-center">
-                                        @* <img alt="Image profile avatar" src="@user.ProfileImageUrl" class="avatar"> *@
-                                        <div class="media-body">
-                                            <span class="h6 mb-0">@user.UserName</span>
-                                        </div>
-                                    </div>
-                                </th>
-                                @* <td>
-                                    <a class="btn btn-outline-primary" asp-controller="User" asp-action="Detail" asp-route-id="@user.Id">
-                                        View Profile
-                                    </a>
-                                </td> *@
-                                @* <td><i class="icon-location"></i> @user.Location</td> *@
-                            </tr>
-                            <tr class="table-divider">
-                                <th></th>
-                                <td></td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+      <div class="row">
+
+          @foreach(var item in Model)
+          {
+              <div class="col">
+              <div class="card shadow-sm">
+               @* <img class ="card-img-top" src="@item.Image" width="100%" height="225" alt="Card image cap"> *@         
+                <div class="card-body">
+                  <p class="card-text">@item.UserName</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a asp-controller="Park" asp-action="Details" asp-route-id="@item.Id" type="btn btn-success" class="btn btn-sm btn-outline-secondary">View</a>
+                      @if(User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                      {
+                        <a asp-controller="Park" asp-action="Edit" asp-route-id="@item.Id" type="btn btn-success" class="btn btn-sm btn-outline-secondary">Edit</a>
+                        <a asp-controller="Park" asp-action="Delete" asp-route-id="@item.Id" type="btn btn-success" class="btn btn-danger btn-sm">Delete</a>
+                      }
+                    </div>
+                    @* <small class="text-body-secondary">9 mins</small> *@
+                  </div>
+                </div>
+              </div>
             </div>
-            <!--end of col-->
-        </div>
-        <!--end of row-->
-    </div>
-    <!--end of container-->
-</section>
+          }
