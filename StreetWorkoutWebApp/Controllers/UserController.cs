@@ -32,5 +32,19 @@ namespace StreetWorkoutWebApp.Controllers
 
             return View(usersVM);
         }
+
+
+        public async Task<IActionResult> Detail(string id)
+        {
+            var user = await _userRepository.GetUserById(id);
+
+            var userDetailVM = new UserDetailVM
+            {
+                Id = user.Id,
+                UserName = user.UserName
+            };
+
+            return View(userDetailVM);
+        }
     }
 }
