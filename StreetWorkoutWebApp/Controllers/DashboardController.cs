@@ -32,6 +32,12 @@ namespace StreetWorkoutWebApp.Controllers
 
         public async Task<IActionResult> EditUserProfile()
         {
+            var userId = _httpContext.HttpContext.User.GetUserId();
+            var user = await _dashboardRepository.GetUserById(userId);
+
+            if (user == null)
+                return View("Error");
+
             return View();
         }
     }
