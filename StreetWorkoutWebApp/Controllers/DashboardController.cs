@@ -38,7 +38,15 @@ namespace StreetWorkoutWebApp.Controllers
             if (user == null)
                 return View("Error");
 
-            return View();
+            var editUserVM = new EditUserProfileVM
+            {
+                Id = userId,
+                City = user.City,
+                Country = user.Country,
+                ProfileImageUrl = user.ProfileImageUrl,
+            };
+
+            return View(editUserVM);
         }
     }
 }
