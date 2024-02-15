@@ -15,6 +15,11 @@ namespace StreetWorkoutWebApp.Repository
             _httpContext = httpContext;
         }
 
+        public async Task<AppUser> GetUserById(string id)
+        {
+            return await _context.Users.FindAsync(id);
+        }
+
         public async Task<List<Park>> GetUsersParks()
         {
             var currentUser = _httpContext.HttpContext?.User.GetUserId();
