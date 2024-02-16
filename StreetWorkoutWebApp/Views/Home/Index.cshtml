@@ -30,7 +30,9 @@
   {
         <h3>Login to see parks in your area!</h3>
   }
-  <div class="album py-5 bg-body-tertiary">
+  @if(User.Identity.IsAuthenticated)
+  {
+      <div class="album py-5 bg-body-tertiary">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           @foreach(var item in Model.Parks)
@@ -49,3 +51,8 @@
               </div>
             </div>
           }
+          </div>
+          </div>
+          </div>
+  }
+  
