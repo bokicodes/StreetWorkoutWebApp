@@ -34,7 +34,7 @@ namespace StreetWorkoutWebApp.Controllers
                 RegionInfo myRI = new RegionInfo(ipInfo.Country);
                 ipInfo.Country = myRI.EnglishName;
                 homeVM.City = ipInfo.City;
-                homeVM.Country = ipInfo.Country;
+                homeVM.Country = ipInfo.Region;
 
                 if(homeVM.City != null)
                 {
