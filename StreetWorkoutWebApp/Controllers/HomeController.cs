@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using StreetWorkoutWebApp.Helpers;
 using StreetWorkoutWebApp.Interfaces;
 using StreetWorkoutWebApp.Models;
+using StreetWorkoutWebApp.ViewModels;
 using System.Diagnostics;
+using System.Globalization;
+using System.Net;
 
 namespace StreetWorkoutWebApp.Controllers
 {
@@ -17,12 +21,39 @@ namespace StreetWorkoutWebApp.Controllers
             _parkRepository = parkRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var ipInfo = new IPInfo();
-            var 
+            var homeVM = new HomeVM();
 
-            return View();
+            try
+            {
+                string url = "https://ipinfo.io?token=b8b105f3439add";
+                var info = new WebClient().DownloadString(url);
+                ipInfo = JsonConvert.DeserializeObject<IPInfo>(info);
+                RegionInfo myRI = new RegionInfo(ipInfo.Country);
+                ipInfo.Country = myRI.EnglishName;
+                homeVM.City = ipInfo.City;
+                homeVM.Country = ipInfo.Country;
+
+                if(homeVM.City != null)
+                {
+                    homeVM.Parks = await _parkRepository.GetParksByCity(homeVM.City);
+                }
+                else
+                {
+                    homeVM.Parks = null;
+                }
+
+                return View(homeVM);
+            }
+            catch (Exception)
+            {
+                homeVM.Parks = null;
+
+            }
+
+            return View(homeVM);
         }
 
         public IActionResult Privacy()
