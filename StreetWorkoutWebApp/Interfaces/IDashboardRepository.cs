@@ -6,5 +6,8 @@ namespace StreetWorkoutWebApp.Interfaces
     {
         Task<List<Park>> GetUsersParks();
         Task<AppUser> GetUserById(string id);
+        Task<AppUser> GetUserByIdNoTracking(string id);
+        bool Update(AppUser user);
+        bool Save();
     }
 }

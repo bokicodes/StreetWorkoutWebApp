@@ -26,6 +26,7 @@ namespace StreetWorkoutWebApp.Controllers
                 {
                     Id = user.Id,
                     UserName = user.UserName,
+                    ProfileImageUrl = user.ProfileImageUrl
                 };
                 usersVM.Add(userVM);
             }
