@@ -17,7 +17,7 @@
                       <a asp-controller="User" asp-action="Detail" asp-route-id="@item.Id" type="btn btn-success" class="btn btn-sm btn-outline-secondary">View</a>
                       @if(User.Identity.IsAuthenticated && User.IsInRole("admin"))
                       {
-                        <a asp-controller="Park" asp-action="Delete" asp-route-id="@item.Id" type="btn btn-success" class="btn btn-danger btn-sm">Delete</a>
+                        <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id" type="btn btn-success" class="btn btn-danger btn-sm">Delete</a>
                       }
                     </div>
                     @* <small class="text-body-secondary">9 mins</small> *@

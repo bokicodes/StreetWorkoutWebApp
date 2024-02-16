@@ -21,7 +21,8 @@ namespace StreetWorkoutWebApp.Repository
 
         public bool Delete(AppUser user)
         {
-            throw new NotImplementedException();
+            _context.Remove(user);
+            return Save();
         }
 
         public async Task<IEnumerable<AppUser>> GetAllUsers()
