@@ -3,21 +3,21 @@
 
 <div class="container">
 
-    <h1 class="my-4">Page Heading
-        <small>Secondary Text</small>
-    </h1>
+    <h1 class="my-4">User Profile</h1>
+    <h2>@Model.UserName</h2>
 
     <div class="row">
-        <div class="col-md-8">
-           @*  <img class="img-fluid" src="@Model.Image" alt=""> *@
+        <div class="col-md-6">
+           <img class="img-fluid" src="@Model.ProfileImageUrl" alt="Profile picture">
         </div>
 
         <div class="col-md-4">
+            <h3 class="my-3">Contact</h3>
+            <p>@Model.EmailAddress</p>
             <h3 class="my-3">Location</h3>
             <ul>
-                @* <li>@Model.Address.Street</li>
-                <li>@Model.Address.City</li>
-                <li>@Model.Address.Country</li> *@
+                <li>@Model.City</li>
+                <li>@Model.Country</li>
             </ul>
         </div>
     </div>

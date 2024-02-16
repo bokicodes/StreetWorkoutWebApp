@@ -42,7 +42,11 @@ namespace StreetWorkoutWebApp.Controllers
             var userDetailVM = new UserDetailVM
             {
                 Id = user.Id,
-                UserName = user.UserName
+                UserName = user.UserName,
+                EmailAddress = user.Email,
+                ProfileImageUrl = user.ProfileImageUrl,
+                City = user.City,
+                Country = user.Country
             };
 
             return View(userDetailVM);
