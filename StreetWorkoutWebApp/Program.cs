@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StreetWorkoutWebApp.Data;
 using StreetWorkoutWebApp.Helpers;
+using StreetWorkoutWebApp.Hubs;
 using StreetWorkoutWebApp.Interfaces;
 using StreetWorkoutWebApp.Models;
 using StreetWorkoutWebApp.Repository;
@@ -30,6 +31,7 @@ builder.Services.AddSession();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
 
+
 var app = builder.Build();
 
 if(args.Length == 1 && args[0].ToLower() == "seeddata")
@@ -52,9 +54,10 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.MapHub<UsersOnlineHub>("/UsersOnlineHub");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();
