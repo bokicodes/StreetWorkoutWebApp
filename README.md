@@ -11,3 +11,4 @@ Za rad sa bazom korišćen je Entity Framework Core i Code-First pristup. Kao pr
 Implementirana je jedna funkcionalnost uz pomoć SignalR-a, a  to je prikaz koliko korisnika je trenutno na početnoj stranici.
 
 Aplikacija je izrađena samostalno kao projekat iz predmeta Napredne .NET Tehnologije.  
+Glavna tehnologija korišćena u izradi projekta je ASP.NET Core.
