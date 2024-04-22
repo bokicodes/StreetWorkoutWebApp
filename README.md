@@ -1,4 +1,5 @@
 # Uvodna reč
+
 Aplikacija je izrađena samostalno kao projektni rad iz izbornog predmeta "Napredne .NET Tehnologije".
 Ideja aplikacije je mreža/platforma za ljubitelje uličnog treninga (street workout). Korisnici mogu da se registruju, prijave, da vide druge korisnike i da se povežu sa njima, da objave svoje parkove i vide parkove koje su objavili drugi korisnici. Uz pomoć geolocation API-a dodata je i funkcionalnost da nakon prijave korisnik na početnoj strani vidi sve objavljene parkove koji se nalaze u njegovoj blizini.
 
@@ -10,16 +11,18 @@ Implementirana je jedna funkcionalnost uz pomoć SignalR-a, a to je prikaz kolik
 
 
 # Početna stranica
+
 Nakon otvaranja aplikacije korisnik nailazi na početnu stranu sledećeg izgleda:
 
 ![home_page](https://github.com/bokicodes/StreetWorkoutWebApp/assets/114671954/20671736-a377-43b0-97cb-864c883208c3)
 
-Nakon prijave korisnik će biti u mogućnosti da vidi sve objavljene parkove koji se nalaze u njegovoj blizini.
+Nakon prijave korisnik će biti u mogućnosti da vidi sve objavljene parkove koji se nalaze u njegovoj blizini:
 
 ![parks_near](https://github.com/bokicodes/StreetWorkoutWebApp/assets/114671954/10bf2160-5537-49e2-906c-01510d2ea30e)
 
 
 # Registracija i pijava
+
 Korisnik ima mogućnost da se registruje. Za proveru šifre prilikom registracije korišćeni su Data Annotations koji mogu da vrše razne provere, provere su odrađene u skladu sa „password complexity“ uslovima koji idu uz Identity Framework.
 
 ![reg](https://github.com/bokicodes/StreetWorkoutWebApp/assets/114671954/a20e376a-0b55-4d74-9b9c-16dedfd13985)
@@ -29,7 +32,8 @@ Nakon validne registracije korisnik je odveden na stranicu za prijavu:
 ![login](https://github.com/bokicodes/StreetWorkoutWebApp/assets/114671954/8c4c099a-2081-4bff-be35-a758e13110d1)
 
 
-#Korisnički dashboard
+# Korisnički dashboard
+
 Nakon uspešne prijave korisnik je odveden na stranicu koja prikazuje njegov Dashboard odnosno mesto na kome on može da vodi evidenciju o svojim objavljenim parkovima. To je mesto gde on može i da kreira
 odnosno objavi park i da edituje svoj profil.
 
@@ -37,18 +41,19 @@ odnosno objavi park i da edituje svoj profil.
 
 
 # Stranica „Parks“
+
 Na stranici „Parks“ korisnik može da vidi sve objave parkova na platformi. To je takođe mesto gde admin može da edituje i briše tuđe parkove.
 
 ![park_page](https://github.com/bokicodes/StreetWorkoutWebApp/assets/114671954/d63dbcdd-fddb-4bd3-822e-49078c45aebd)
 
-Klikom na dugme „View“ korisnik otvara posebnu stranicu u kojoj može videti dotatne detalje objave kao na primer detaljni opis parka i lokacija.
+Klikom na dugme „View“ korisnik otvara posebnu stranicu u kojoj može videti detalje objave:
 
 ![view_park](https://github.com/bokicodes/StreetWorkoutWebApp/assets/114671954/0608ce5e-2caf-4996-9231-a74062b67111)
 
 
 # Stranica „Users“
 
-Na ovoj stranici korisnik može videti sve korisnike koji su registrovani na aplikaciji.
+Na ovoj stranici korisnik može da vidi sve korisnike koji su registrovani na aplikaciji.
 
 ![users_page](https://github.com/bokicodes/StreetWorkoutWebApp/assets/114671954/6d31c2f4-fc58-42e0-8dd0-ac23b814a0eb)
 
